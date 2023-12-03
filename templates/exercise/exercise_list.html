@@ -1,0 +1,19 @@
+{% extends 'exercise/base.html' %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Kurzbeschreibung</th>
+            <th>Ersteller</th>
+        </tr>
+        </thead>
+        {% for exercise in exercises %}
+            <tr>
+                <td>{{ exercise.description }}</td>
+                <td>{{ exercise.creator }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

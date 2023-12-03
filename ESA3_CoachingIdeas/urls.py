@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from exercise.views import get_exercise_list
 from helloworld.views import get_hello_world
 
 urlpatterns = [
     path("helloworld/", get_hello_world),
+    path("exercises/", get_exercise_list, name="exercise_list"),
     path("admin/", admin.site.urls),
 ]
