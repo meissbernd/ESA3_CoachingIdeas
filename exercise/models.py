@@ -14,8 +14,18 @@ class Creator(models.Model):
         return f"{self.first_name}, {self.last_name}"
 
 
+class SoccerSkill(models.Model):
+    """Specific skill that can be addressed by exercises."""
+
+    name = models.CharField(max_length=30)
+
+
 class Exercise(models.Model):
     """Physical exercise for training."""
 
-    description = models.CharField(max_length=40)
+    title = models.CharField(max_length=255)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(Creator, on_delete=models.SET_NULL, null=True)
+    soccer_skills = models.ManyToManyField(SoccerSkill, related_name="exercises")
