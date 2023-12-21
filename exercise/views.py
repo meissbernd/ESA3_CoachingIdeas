@@ -7,7 +7,7 @@ from exercise.models import Exercise
 
 
 def get_exercise_list(request):
-    exercises = Exercise.objects.all().order_by("description")
+    exercises = Exercise.objects.all().order_by("created_on")
     response = render(
         request,
         template_name="exercise/exercise_list.html",

@@ -4,14 +4,18 @@
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
+            <th>Titel</th>
             <th>Kurzbeschreibung</th>
-            <th>Ersteller</th>
+            <th>erstellt</th>
+            <th>Skill</th>
         </tr>
         </thead>
         {% for exercise in exercises %}
             <tr>
-                <td>{{ exercise.description }}</td>
-                <td>{{ exercise.creator }}</td>
+                <td>{{ exercise.title }}</td>
+                <td>{{ exercise.body }}</td>
+                <td>{{ exercise.created_on }}</td>
+                <td>{{ exercise.soccer_skills.name }}</td>
             </tr>
         {% endfor %}
 
