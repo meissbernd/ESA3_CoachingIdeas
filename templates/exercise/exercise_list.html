@@ -7,7 +7,9 @@
             <th>Titel</th>
             <th>Kurzbeschreibung</th>
             <th>erstellt</th>
-            <th>Skill</th>
+            <th>Autor</th>
+            <th>Trainingsfokus</th>
+            <th>Altersklasse</th>
         </tr>
         </thead>
         {% for exercise in exercises %}
@@ -15,7 +17,9 @@
                 <td>{{ exercise.title }}</td>
                 <td>{{ exercise.body }}</td>
                 <td>{{ exercise.created_on }}</td>
-                <td>{{ exercise.soccer_skills.name }}</td>
+                <td>{{ exercise.creator }}</td>
+                <td>{{ exercise.soccer_skills }}</td>
+                <td>{{ exercise }}</td>
             </tr>
         {% endfor %}
 

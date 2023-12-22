@@ -17,3 +17,4 @@
 .idea/dataSources.local.xml
 /.idea/ESA3_CoachingIdeas.iml
 /.idea/git_toolbox_prj.xml
+/db.sqlite3

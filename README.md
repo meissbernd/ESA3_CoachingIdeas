@@ -3,12 +3,22 @@
 Follow the instructions ...
 
 ## Setup
-Populate with fake data:
+```bash
+$ makemigrations exercise
+$ migrate exercise
+```
+
+
+Reset DB and populate with fake data:
 
 - install packages: django-seed, psycopg2
-- in terminal:
+- in manage.py@terminal:
+
 ```bash
-$ seed exercise --number==3
+$ reset_db --noinput
+$ makemigrations exercise
+$ migrate exercise
+$ seed exercise --number=3
 ```
 
 

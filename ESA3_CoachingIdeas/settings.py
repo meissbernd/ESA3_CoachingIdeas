@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "exercise",
     "django_seed",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [

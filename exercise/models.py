@@ -17,7 +17,13 @@ class Creator(models.Model):
 class SoccerSkill(models.Model):
     """Specific skill that can be addressed by exercises."""
 
-    name = models.CharField(max_length=30)
+    label = models.CharField(max_length=30)
+
+
+class AgeGroup(models.Model):
+    """Specific age group that can be addressed by exercises."""
+
+    label = models.CharField(max_length=30)
 
 
 class Exercise(models.Model):
@@ -29,3 +35,4 @@ class Exercise(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(Creator, on_delete=models.SET_NULL, null=True)
     soccer_skills = models.ManyToManyField(SoccerSkill, related_name="exercises")
+    age_groups = models.ManyToManyField(AgeGroup, related_name="exercises")
