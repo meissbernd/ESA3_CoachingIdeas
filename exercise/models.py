@@ -42,5 +42,5 @@ class Exercise(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(Creator, on_delete=models.SET_NULL, null=True)
-    soccer_skills = models.ManyToManyField(SoccerSkill, related_name="exercises")
+    soccer_skills = models.ForeignKey(SoccerSkill, on_delete=models.SET_NULL, null=True)
     age_groups = models.ManyToManyField(AgeGroup, related_name="exercises")
