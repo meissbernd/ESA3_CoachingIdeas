@@ -17,7 +17,15 @@ class Creator(models.Model):
 class SoccerSkill(models.Model):
     """Specific skill that can be addressed by exercises."""
 
-    label = models.CharField(max_length=30)
+    ALL_SKILLS = (
+        ("a", "Dribbling"),
+        ("b", "Passen"),
+        ("c", "Torschuss"),
+        ("d", "Ballannahme"),
+        ("e", "Zusammenspiel"),
+    )
+
+    skill = models.CharField(max_length=1, choices=ALL_SKILLS)
 
 
 class AgeGroup(models.Model):
