@@ -4,14 +4,18 @@ Follow the instructions ...
 
 ## Setup
 ```shell
-$ makemigrations exercise
-$ migrate exercise
+$ makemigrations
+$ migrate
 ```
 
+```shell
+$ createsuperuser
+```
 
 Reset DB and populate with fake data:
 
 - install packages: django-seed, psycopg2
+- delete all wxyz_*.py files in /migrations
 - in manage.py@terminal:
 
 ```shell
