@@ -18,7 +18,7 @@
                 <td>{{ exercise.body }}</td>
                 <td>{{ exercise.created_on }}</td>
                 <td>{{ exercise.creator }}</td>
-                <td>{{ exercise.soccer_skills.skill }}</td>
+                <td>{{ exercise.soccer_skills.get_skill_display }}</td>
                 <td>{{ exercise.age_groups.model }}</td>
             </tr>
         {% endfor %}
