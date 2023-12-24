@@ -31,7 +31,18 @@ class SoccerSkill(models.Model):
 class AgeGroup(models.Model):
     """Specific age group that can be addressed by exercises."""
 
-    age_group = models.CharField(max_length=30)
+    AGE_GROUPS = (
+        ("s", "Erwachsene"),
+        ("a", "A-Jun"),
+        ("b", "B-Jun"),
+        ("c", "C-Jun"),
+        ("d", "D-Jun"),
+        ("e", "E-Jun"),
+        ("f", "F-Jun"),
+        ("g", "G-Jun"),
+    )
+
+    age_group = models.CharField(max_length=1, choices=AGE_GROUPS)
 
     def __str__(self):
         return f"{self.age_group}"
