@@ -19,10 +19,10 @@
                 <td>{{ exercise.created_on }}</td>
                 <td>{{ exercise.creator }}</td>
                 <td>{{ exercise.soccer_skills.get_skill_display }}</td>
-{#                <td>{{ exercise.age_groups.all|join:', ' }}</td>#}
                 <td>{% for i in exercise.age_groups.all %}
                     {{ i.get_age_group_display }}
-                    {% endfor %}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
                 </td>
             </tr>
         {% endfor %}
