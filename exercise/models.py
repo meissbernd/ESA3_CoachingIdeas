@@ -14,18 +14,23 @@ class Creator(models.Model):
         return f"{self.first_name}, {self.last_name}"
 
 
-class SoccerSkill(models.Model):
-    """Specific skill that can be addressed by exercises."""
+class SoccerSkillTextChoices(models.TextChoices):
+    """Enum of skills that can be addressed by exercises."""
 
-    ALL_SKILLS = (
-        ("a", "Dribbling"),
-        ("b", "Passen"),
-        ("c", "Torschuss"),
-        ("d", "Ballannahme"),
-        ("e", "Zusammenspiel"),
-    )
+    DRIBBLING = "Dribbling"
+    PASSING = "Passen"
+    FINISHING = "Torschuss"
+    TRAPPING = "Ballannahme"
+    COOPERATION = "Zusammenspiel"
 
-    skill = models.CharField(max_length=1, choices=ALL_SKILLS)
+
+# class SoccerSkill(models.Model):
+#     """Specific skill that can be addressed by exercises."""
+#
+#     skill = models.CharField(max_length=50, choices=SoccerSkillTextChoices.choices)
+#
+#     def __str__(self):
+#         return f"{self.skill}"
 
 
 class AgeGroup(models.Model):
@@ -56,5 +61,11 @@ class Exercise(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(Creator, on_delete=models.SET_NULL, null=True)
-    soccer_skills = models.ForeignKey(SoccerSkill, on_delete=models.SET_NULL, null=True)
-    age_groups = models.ManyToManyField(AgeGroup, related_name="exercises")
+    soccer_skills = models.CharField(
+        max_length=50, choices=SoccerSkillTextChoices.choices, null=True
+    )
+
+    # age_groups = models.ManyToManyField(AgeGroup, related_name="exercises")
+
+    # def __str__(self):
+    #     return f"{self.title}_{self.soccer_skills.get_skill_display()}"

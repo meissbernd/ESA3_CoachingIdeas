@@ -9,7 +9,7 @@
             <th>erstellt</th>
             <th>Autor</th>
             <th>Trainingsfokus</th>
-            <th>Altersklasse</th>
+{#            <th>Altersklasse</th>#}
         </tr>
         </thead>
         {% for exercise in exercises %}
@@ -18,12 +18,13 @@
                 <td>{{ exercise.body }}</td>
                 <td>{{ exercise.created_on }}</td>
                 <td>{{ exercise.creator }}</td>
-                <td>{{ exercise.soccer_skills.get_skill_display }}</td>
-                <td>{% for i in exercise.age_groups.all %}
-                    {{ i.get_age_group_display }}
-                    {% if not forloop.last %}, {% endif %}
-                {% endfor %}
-                </td>
+                <td>{{ exercise.soccer_skills.title }}</td>
+{#                <td>{{ exercise.get_soccer_skills_display }}</td>#}
+{#                <td>{% for i in exercise.age_groups.all %}#}
+{#                    {{ i.get_age_group_display }}#}
+{#                    {% if not forloop.last %}, {% endif %}#}
+{#                {% endfor %}#}
+{#                </td>#}
             </tr>
         {% endfor %}
 
