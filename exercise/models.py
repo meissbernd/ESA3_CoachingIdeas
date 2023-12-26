@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 # Create your models here.
 
@@ -44,5 +44,8 @@ class Exercise(models.Model):
     for_jun_f = models.BooleanField(default=False)
     for_jun_g = models.BooleanField(default=False)
 
-    # def __str__(self):
-    #     return f"{self.title}_{self.soccer_skills.get_skill_display()}"
+    def __str__(self):
+        return f"{self.title}_{self.soccer_skills.title()}"
+
+    def get_absolute_url(self):
+        return reverse("exercise_detail", args=[str(self.id)])
