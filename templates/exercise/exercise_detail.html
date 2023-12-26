@@ -37,5 +37,5 @@
     </table>
     <a class="btn btn-secondary btn-sm" href="{% url 'exercise_start' %}">Zurück</a>
     <a class="btn btn-danger btn-sm" href="#">Löschen</a>
-    <a class="btn btn-success btn-sm" href="#">Update</a>
+    <a class="btn btn-success btn-sm" href="{% url 'exercise_update' exercise.pk %}">Update</a>
 {% endblock %}

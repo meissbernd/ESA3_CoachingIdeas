@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from django.views.generic import CreateView
 from django.views.generic import DetailView
 
@@ -35,3 +35,9 @@ class ExerciseCreate(CreateView):
 class ExerciseDetail(DetailView):
     model = Exercise
     template_name = "exercise/exercise_detail.html"
+
+
+class ExerciseUpdate(UpdateView):
+    model = Exercise
+    template_name = "exercise/exercise_update.html"
+    fields = "__all__"
