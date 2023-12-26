@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from django.views.generic import ListView
+
 from exercise.models import Exercise
 
 
@@ -14,3 +16,8 @@ def get_exercise_list(request):
         context={"page_title": "Trainingsübungen", "exercises": exercises},
     )
     return response
+
+
+class ExerciseHome(ListView):
+    model = Exercise
+    template_name = "exercise/exercise_home.html"
