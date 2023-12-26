@@ -1,24 +1,40 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Übungsdetails</h2>
-    
-    <p>{{ exercise.title }}</p>
-    <p>{{ exercise.body }}</p>
-    <p>{{ exercise.created_on }}</p>
-    <p>{{ exercise.creator }}</p>
-    <p>{{ exercise.soccer_skills.title }}</p>
-    <p>{{ exercise.for_adults|yesno:"X,-" }}</p>
-    <p>{{ exercise.for_jun_a|yesno:"X,-" }}</p>
-    <p>{{ exercise.for_jun_b|yesno:"X,-" }}</p>
-    <p>{{ exercise.for_jun_c|yesno:"X,-" }}</p>
-    <p>{{ exercise.for_jun_d|yesno:"X,-" }}</p>
-    <p>{{ exercise.for_jun_e|yesno:"X,-" }}</p>
-    <p>{{ exercise.for_jun_f|yesno:"X,-" }}</p>
-    <p>{{ exercise.for_jun_g|yesno:"X,-" }}</p>
-    
-    <a class="btn btn-secondary btn-sm" href="{% url 'exercise_start' %}">Zurück</a>
-    <a class="btn btn-danger btn-sm" href="#">Löschen</a>
-    <a class="btn btn-success btn-sm" href="#">Update</a>
-{% endblock content %}
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Titel</th>
+            <th>Kurzbeschreibung</th>
+            <th>erstellt</th>
+            <th>Autor</th>
+            <th>Trainingsfokus</th>
+            <th>Erw</th>
+            <th>A-Jun</th>
+            <th>B-Jun</th>
+            <th>C-Jun</th>
+            <th>D-Jun</th>
+            <th>E-Jun</th>
+            <th>F-Jun</th>
+            <th>G-Jun</th>
+
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ exercise.title }}</td>
+            <td>{{ exercise.body }}</td>
+            <td>{{ exercise.created_on }}</td>
+            <td>{{ exercise.creator }}</td>
+            <td>{{ exercise.soccer_skills.title }}</td>
+            <td>{{ exercise.for_adults|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_a|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_b|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_c|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_d|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_e|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_f|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_g|yesno:"X,-" }}</td>
+        </tr>
+
+    </table>
+{% endblock %}
