@@ -35,14 +35,14 @@ class Exercise(models.Model):
     soccer_skills = models.CharField(
         max_length=50, choices=SoccerSkillTextChoices.choices, null=True
     )
-    age_adults = models.BooleanField(default=True)
-    age_jun_a = models.BooleanField(default=False)
-    age_jun_b = models.BooleanField(default=False)
-    age_jun_c = models.BooleanField(default=False)
-    age_jun_d = models.BooleanField(default=False)
-    age_jun_e = models.BooleanField(default=False)
-    age_jun_f = models.BooleanField(default=False)
-    age_jun_g = models.BooleanField(default=False)
+    for_adults = models.BooleanField(default=True)
+    for_jun_a = models.BooleanField(default=False)
+    for_jun_b = models.BooleanField(default=False)
+    for_jun_c = models.BooleanField(default=False)
+    for_jun_d = models.BooleanField(default=False)
+    for_jun_e = models.BooleanField(default=False)
+    for_jun_f = models.BooleanField(default=False)
+    for_jun_g = models.BooleanField(default=False)
 
     # def __str__(self):
     #     return f"{self.title}_{self.soccer_skills.get_skill_display()}"

@@ -27,14 +27,14 @@
                 <td>{{ exercise.created_on }}</td>
                 <td>{{ exercise.creator }}</td>
                 <td>{{ exercise.soccer_skills.title }}</td>
-                <td>{{ exercise.age_adults|yesno:"X,-" }}</td>
-                <td>{{ exercise.age_jun_a|yesno:"X,-" }}</td>
-                <td>{{ exercise.age_jun_b|yesno:"X,-" }}</td>
-                <td>{{ exercise.age_jun_c|yesno:"X,-" }}</td>
-                <td>{{ exercise.age_jun_d|yesno:"X,-" }}</td>
-                <td>{{ exercise.age_jun_e|yesno:"X,-" }}</td>
-                <td>{{ exercise.age_jun_f|yesno:"X,-" }}</td>
-                <td>{{ exercise.age_jun_g|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_adults|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_jun_a|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_jun_b|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_jun_c|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_jun_d|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_jun_e|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_jun_f|yesno:"X,-" }}</td>
+                <td>{{ exercise.for_jun_g|yesno:"X,-" }}</td>
                 
 {#                <td>{{ exercise.get_soccer_skills_display }}</td>#}
 {#                <td>{% for i in exercise.age_groups.all %}#}
