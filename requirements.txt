@@ -6,4 +6,5 @@ django-extensions==3.2.3  # Enable reset_db
 pipreqs==0.4.13  # Get requirements only from imports
 pip-tools==7.3.0  # Create full reqzuirements.txt from requirements.in
 psycopg2==2.9.9  # Populate database
+selenium==4.16.0  # Testing
 
