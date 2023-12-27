@@ -7,4 +7,6 @@ pipreqs==0.4.13  # Get requirements only from imports
 pip-tools==7.3.0  # Create full reqzuirements.txt from requirements.in
 psycopg2==2.9.9  # Populate database
 selenium==4.16.0  # Testing
+Pillow==10.1.0  # Handle ImageFields
+
 
