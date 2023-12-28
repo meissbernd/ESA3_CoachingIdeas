@@ -8,5 +8,8 @@ pip-tools==7.3.0  # Create full reqzuirements.txt from requirements.in
 psycopg2==2.9.9  # Populate database
 selenium==4.16.0  # Testing
 Pillow==10.1.0  # Handle ImageFields
+django-crispy-forms==2.1  # Format forms
+crispy-bootstrap4==2023.1 # Format forms
+
 
 

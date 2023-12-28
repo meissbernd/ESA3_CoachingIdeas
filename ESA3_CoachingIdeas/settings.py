@@ -40,8 +40,13 @@ INSTALLED_APPS = [
     "exercise",
     "django_seed",
     "django_extensions",
+    "crispy_forms",
+    "crispy_bootstrap4",
     "core.apps.CoreConfig",
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
