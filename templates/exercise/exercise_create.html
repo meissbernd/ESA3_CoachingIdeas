@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'exercise/base.html' %}
 
 {% load crispy_forms_filters %}
 
@@ -8,7 +8,7 @@
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-    <a class="btn btn-danger btn-sm" href="{% url 'exercise_start' %}">Abbrechen</a>
+    <a class="btn btn-danger btn-sm" href="{% url 'exercise_list' %}">Abbrechen</a>
     <button type="reset" class="btn btn-secondary btn-sm">Zurücksetzen</button>
     <button type="submit" class="btn btn-success btn-sm">Speichern</button>
 </form>
