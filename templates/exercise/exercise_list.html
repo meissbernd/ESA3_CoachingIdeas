@@ -17,12 +17,13 @@
             <th>E-Jun</th>
             <th>F-Jun</th>
             <th>G-Jun</th>
+            <th>Download</th>
 
         </tr>
         </thead>
         {% for exercise in exercises %}
             <tr>
-{#                <td>{{ exercise.title }}</td>#}
+                {#                <td>{{ exercise.title }}</td>#}
                 <td><a href="{% url 'exercise_detail' exercise.pk %}">{{ exercise.title }}</a></td>
                 <td>{{ exercise.body }}</td>
                 <td>{{ exercise.created_on }}</td>
@@ -36,13 +37,16 @@
                 <td>{{ exercise.for_jun_e|yesno:"X,-" }}</td>
                 <td>{{ exercise.for_jun_f|yesno:"X,-" }}</td>
                 <td>{{ exercise.for_jun_g|yesno:"X,-" }}</td>
-
-{#                <td>{{ exercise.get_soccer_skills_display }}</td>#}
-{#                <td>{% for i in exercise.age_groups.all %}#}
-{#                    {{ i.get_age_group_display }}#}
-{#                    {% if not forloop.last %}, {% endif %}#}
-{#                {% endfor %}#}
+                <td>
+                    {% if exercise.pdf %}
+                        <a href="/exercises{{ exercise.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                            Download PDF
+                        </a>
+                    {% else %}
+                        <span class="text-muted">No pdf</span>
+                    {% endif %}
                 </td>
+
             </tr>
         {% endfor %}
 

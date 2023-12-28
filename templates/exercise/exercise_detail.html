@@ -6,6 +6,7 @@
         <tr>
             <th>Titel</th>
             <th>Vorschau</th>
+            <th>Download</th>
             <th>Kurzbeschreibung</th>
             <th>erstellt</th>
             <th>Autor</th>
@@ -23,12 +24,20 @@
         <tr>
             <td>{{ exercise.title }}</td>
             <td>
-                <img src="/exercises{{ exercise.image.url }}" alt="/exercises{{ exercise.image.url }}" style="width:50px;">
-{#                {% if exercise.image %}#}
-{#                    <img src="/exercise{{ exercise.image.url }}" alt="{{ exercise.title }}" style="width:100px;">#}
-{#                {% else %}#}
-{#                    <span class="text-muted">No image</span>#}
-{#                {% endif %}#}
+                {% if exercise.image %}
+                    <img src="/exercises{{ exercise.image.url }}" style="width:50px;" alt="">
+                {% else %}
+                    <span class="text-muted">No image</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if exercise.pdf %}
+                    <a href="/exercises{{ exercise.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                        Download PDF
+                    </a>
+                {% else %}
+                    <span class="text-muted">No pdf</span>
+                {% endif %}
             </td>
             <td>{{ exercise.body }}</td>
             <td>{{ exercise.created_on }}</td>
