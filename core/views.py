@@ -45,6 +45,13 @@ def upload_book(request):
     return render(request, "core/upload_book.html", {"form": form})
 
 
+def delete_book(request, pk):
+    if request.method == "POST":
+        book = Book.objects.get(pk=pk)
+        book.delete()
+    return redirect("book_list")
+
+
 class BookListView(ListView):
     model = Book
     template_name = "core/class_book_list.html"

@@ -14,6 +14,7 @@ urlpatterns = [
     path(
         "class/books/upload", views.UploadBookView.as_view(), name="class_upload_book"
     ),
+    path("books/delete/<int:pk>/", views.delete_book, name="delete_book"),
 ]
 
 # add a path to core/media (to have access to local stored files)
