@@ -22,9 +22,8 @@ from exercise.views import get_exercise_list
 from helloworld.views import get_hello_world
 
 urlpatterns = [
-    path("", include("exercise.urls")),
-    path("helloworld/", get_hello_world),
-    path("exercises/", get_exercise_list, name="exercise_list"),
+    path("", get_hello_world, name="helloworld"),
+    path("exercises", include("exercise.urls")),
     path("admin/", admin.site.urls),
     path("core/", include("core.urls")),
 ]

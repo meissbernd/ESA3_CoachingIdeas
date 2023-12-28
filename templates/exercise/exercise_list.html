@@ -17,7 +17,7 @@
             <th>E-Jun</th>
             <th>F-Jun</th>
             <th>G-Jun</th>
-            
+
         </tr>
         </thead>
         {% for exercise in exercises %}
@@ -35,7 +35,7 @@
                 <td>{{ exercise.for_jun_e|yesno:"X,-" }}</td>
                 <td>{{ exercise.for_jun_f|yesno:"X,-" }}</td>
                 <td>{{ exercise.for_jun_g|yesno:"X,-" }}</td>
-                
+
 {#                <td>{{ exercise.get_soccer_skills_display }}</td>#}
 {#                <td>{% for i in exercise.age_groups.all %}#}
 {#                    {{ i.get_age_group_display }}#}

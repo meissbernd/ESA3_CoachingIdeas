@@ -7,9 +7,11 @@ from exercise.views import (
     ExerciseDelete,
 )
 
+from exercise import views
 
 urlpatterns = [
-    path("", ExerciseHome.as_view(), name="exercise_start"),
+    # path("", ExerciseHome.as_view(), name="exercise_start"),
+    path("", views.get_exercise_list, name="exercise_list"),
     path("new/", ExerciseCreate.as_view(), name="exercise_new"),
     path("<int:pk>/", ExerciseDetail.as_view(), name="exercise_detail"),
     path("<int:pk>/update", ExerciseUpdate.as_view(), name="exercise_update"),
