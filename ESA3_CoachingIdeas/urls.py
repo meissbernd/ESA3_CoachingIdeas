@@ -26,4 +26,5 @@ urlpatterns = [
     path("helloworld/", get_hello_world),
     path("exercises/", get_exercise_list, name="exercise_list"),
     path("admin/", admin.site.urls),
+    path("core/", include("core.urls")),
 ]

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "exercise",
     "django_seed",
     "django_extensions",
+    "core.apps.CoreConfig",
 ]
 
 MIDDLEWARE = [
