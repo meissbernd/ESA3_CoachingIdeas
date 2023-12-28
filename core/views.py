@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, TemplateView, ListView
 from django.core.files.storage import FileSystemStorage
 
 from core.models import Book
@@ -42,3 +43,17 @@ def upload_book(request):
     else:
         form = BookForm()
     return render(request, "core/upload_book.html", {"form": form})
+
+
+class BookListView(ListView):
+    model = Book
+    template_name = "core/class_book_list.html"
+    context_object_name = "books"
+
+
+class UploadBookView(CreateView):
+    model = Book
+    # fields = ("title", "author", "pdf", "cover")
+    form_class = BookForm
+    success_url = reverse_lazy("class_book_list")
+    template_name = "core/upload_book.html"
