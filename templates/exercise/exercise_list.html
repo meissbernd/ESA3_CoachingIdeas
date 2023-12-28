@@ -22,7 +22,8 @@
         </thead>
         {% for exercise in exercises %}
             <tr>
-                <td>{{ exercise.title }}</td>
+{#                <td>{{ exercise.title }}</td>#}
+                <td><a href="{% url 'exercise_detail' exercise.pk %}">{{ exercise.title }}</a></td>
                 <td>{{ exercise.body }}</td>
                 <td>{{ exercise.created_on }}</td>
                 <td>{{ exercise.creator }}</td>

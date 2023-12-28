@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'exercise/base.html' %}
 
 {% block content %}
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
             <th>Titel</th>
+            <th>Vorschau</th>
             <th>Kurzbeschreibung</th>
             <th>erstellt</th>
             <th>Autor</th>
@@ -21,6 +22,14 @@
         </thead>
         <tr>
             <td>{{ exercise.title }}</td>
+            <td>
+                <img src="/exercises{{ exercise.image.url }}" alt="/exercises{{ exercise.image.url }}" style="width:50px;">
+{#                {% if exercise.image %}#}
+{#                    <img src="/exercise{{ exercise.image.url }}" alt="{{ exercise.title }}" style="width:100px;">#}
+{#                {% else %}#}
+{#                    <span class="text-muted">No image</span>#}
+{#                {% endif %}#}
+            </td>
             <td>{{ exercise.body }}</td>
             <td>{{ exercise.created_on }}</td>
             <td>{{ exercise.creator }}</td>
@@ -35,7 +44,7 @@
             <td>{{ exercise.for_jun_g|yesno:"X,-" }}</td>
         </tr>
     </table>
-    <a class="btn btn-secondary btn-sm" href="{% url 'exercise_start' %}">Zurück</a>
+    <a class="btn btn-secondary btn-sm" href="{% url 'exercise_list' %}">Zurück</a>
     <a class="btn btn-danger btn-sm" href="{% url 'exercise_delete' exercise.pk %}">Löschen</a>
     <a class="btn btn-success btn-sm" href="{% url 'exercise_update' exercise.pk %}">Update</a>
 {% endblock %}

@@ -23,7 +23,7 @@ from helloworld.views import get_hello_world
 
 urlpatterns = [
     path("", get_hello_world, name="helloworld"),
-    path("exercises", include("exercise.urls")),
+    path("exercises/", include("exercise.urls")),
     path("admin/", admin.site.urls),
     path("core/", include("core.urls")),
 ]

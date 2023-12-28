@@ -29,7 +29,7 @@ class ExerciseCreate(CreateView):
     model = Exercise
     template_name = "exercise/exercise_create.html"
     fields = "__all__"
-    success_url = reverse_lazy("exercise_start")
+    success_url = reverse_lazy("exercise_list")
 
 
 class ExerciseDetail(DetailView):
@@ -46,4 +46,4 @@ class ExerciseUpdate(UpdateView):
 class ExerciseDelete(DeleteView):
     model = Exercise
     template_name = "exercise/exercise_delete.html"
-    success_url = reverse_lazy("exercise_start")
+    success_url = reverse_lazy("exercise_list")

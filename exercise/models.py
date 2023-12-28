@@ -43,7 +43,7 @@ class Exercise(models.Model):
     for_jun_e = models.BooleanField(default=False)
     for_jun_f = models.BooleanField(default=False)
     for_jun_g = models.BooleanField(default=False)
-    image = models.ImageField(upload_to="exercise_images/")
+    image = models.ImageField(upload_to="exercise_images/", null=True, blank=True)
 
     def __str__(self):
         return f"{self.title}_{self.soccer_skills.title()}"
