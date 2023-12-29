@@ -30,20 +30,24 @@ class ExerciseCreate(CreateView):
     template_name = "exercise/exercise_create.html"
     fields = "__all__"
     success_url = reverse_lazy("exercise_list")
+    extra_context = {"page_title": "Neue Übung"}
 
 
 class ExerciseDetail(DetailView):
     model = Exercise
     template_name = "exercise/exercise_detail.html"
+    extra_context = {"page_title": "Übungsdetails"}
 
 
 class ExerciseUpdate(UpdateView):
     model = Exercise
     template_name = "exercise/exercise_update.html"
     fields = "__all__"
+    extra_context = {"page_title": "Übung ändern"}
 
 
 class ExerciseDelete(DeleteView):
     model = Exercise
     template_name = "exercise/exercise_delete.html"
     success_url = reverse_lazy("exercise_list")
+    extra_context = {"page_title": "Übung löschen" ""}
