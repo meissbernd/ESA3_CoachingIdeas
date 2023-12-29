@@ -9,8 +9,8 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_start_exercise_list(self):
-        self.browser.get("http://localhost:8000")
+    def test_can_start_app(self):
+        self.browser.get("http://localhost:8000/exercises")
         self.assertIn("Trainingsübungen", self.browser.title)
         # self.fail("Finish the test!")
 
