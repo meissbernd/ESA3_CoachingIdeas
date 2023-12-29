@@ -18,12 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
-from exercise.views import get_exercise_list
 from helloworld.views import get_hello_world
 
 urlpatterns = [
     path("", get_hello_world, name="helloworld"),
     path("exercises/", include("exercise.urls")),
     path("admin/", admin.site.urls),
-    path("core/", include("core.urls")),
 ]

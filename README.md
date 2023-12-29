@@ -22,10 +22,20 @@ $ pip install -r requirements.txt
 <img src="documentation/Screenshot_manage_py_terminal.png" alt="" height="150"/>
 
 - Migrations
-
 ```shell
 $ makemigrations
 $ migrate
+```
+
+- Für ein paar Dummy Daten (ohne Dateien)
+```shell
+seed exercise --number=3
+```
+
+## Notes for Development
+### Generate requirements.txt from imports only (no dev tools)
+```shell
+$ pipreqs --force
 ```
 
 ```shell
@@ -43,13 +53,6 @@ $ reset_db --noinput
 $ makemigrations exercise
 $ migrate exercise
 $ seed exercise --number=3
-```
-
-
-## Development
-### Generate requirements.txt from imports only (no dev tools)
-```shell
-$ pipreqs --force
 ```
 
 

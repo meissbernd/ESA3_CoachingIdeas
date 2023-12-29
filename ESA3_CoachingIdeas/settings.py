@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django_extensions",
     "crispy_forms",
     "crispy_bootstrap4",
-    "core.apps.CoreConfig",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
