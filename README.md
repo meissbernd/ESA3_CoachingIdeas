@@ -3,6 +3,26 @@
 Follow the instructions ...
 
 ## Setup
+
+### Virtual Env
+- Python 3.11
+
+![img.png](documentation/Screenshot_virtual_env.png)
+
+- Install required packages
+```shell
+$ pip install -r requirements.txt
+```
+
+### Database
+- start manage.py terminal
+
+<img src="documentation/Screenshot_start_manage_py_terminal.png" alt="" height="300"/>
+
+<img src="documentation/Screenshot_manage_py_terminal.png" alt="" height="150"/>
+
+- Migrations
+
 ```shell
 $ makemigrations
 $ migrate
