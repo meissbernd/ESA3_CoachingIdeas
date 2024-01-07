@@ -13,6 +13,20 @@ Follow the instructions ...
 ```shell
 $ pip install -r requirements.txt
 ```
+![img.png](documentation/Screenshot_pip_install.png)
+
+### Configure Django Project for IDE (PyCharm)
+
+![img.png](documentation/Screenshot_Pycharm_Settings_Django.png)
+
+### Run Configuration to start app from IDE
+
+<img src="documentation/Screenshot_RunConfigurationSettings_DjangoServer.png" alt="" height="200"/>
+
+DJANGO_SETTINGS_MODULE in den Environment variables setzen!
+<img src="documentation/Screenshot_RunConfigurationSettings_DjangoSettingsModule.png" alt="" height="400"/>
+
+
 
 ### Database
 - start manage.py terminal
