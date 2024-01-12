@@ -1,0 +1,9 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('<int:exercise_id>', views.detail, name='detail'),
+    path('<int:exercise_id>/create_comment', views.create_comment, name='create_comment'),
+    path('comment/<int:comment_id>', views.update_comment, name='update_comment'),
+    path('comment/<int:comment_id>/delete', views.delete_comment, name='delete_comment'),
+]

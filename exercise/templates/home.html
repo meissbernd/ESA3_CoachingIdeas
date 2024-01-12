@@ -16,15 +16,23 @@
                 <div class="card">
                     <img class="card-img-top" src="{{ exercise.image.url }}"/>
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">{{ exercise.title }}</h5>
+                        <a href="{% url 'detail' exercise.id %}">
+                            <h5 class="card-title fw-bold">{{ exercise.title }}</h5>
+                        </a>
                         <p class="card-text">{{ exercise.body }}</p>
 
                         {% if exercise.youtube_link %}
-                            <a href="{{ exercise.youtube_link }}" class="btn btn-primary">
+                            <a href="{{ exercise.youtube_link }}" class="btn btn-outline-danger">
+                            <i class="bi bi-youtube"></i>
                                 Youtube Link
                             </a>
                         {% endif %}
-
+                        {% if exercise.pdf %}
+                            <a href="{{ exercise.pdf.url }}" class="btn btn-outline-info">
+                            <i class="bi bi-file-earmark-pd"></i>
+                                Pdf
+                            </a>
+                        {% endif %}
                         <div>
                             <label for="rating">Rating:</label>
                             {% if exercise.rating == 0 %}
@@ -79,5 +87,5 @@
             </div>
         {% endfor %}
     </div>
-</div>
+    </div>
 {% endblock content %}

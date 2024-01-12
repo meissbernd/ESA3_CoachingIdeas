@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class SoccerSkillTextChoices(models.TextChoices):
     """Enum of skills that can be addressed by exercises."""
 
@@ -37,8 +38,18 @@ class Exercise(models.Model):
 
     youtube_link = models.URLField(blank=True, null=True)
 
-    # Add a field for exercise rating
     rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
 
     def __str__(self):
         return f'{self.title}_{self.soccer_skills.title()}'
+
+
+class Comment(models.Model):
+    text = models.TextField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
+
+    def __str__(self):
+        return self.text
