@@ -37,5 +37,8 @@ class Exercise(models.Model):
 
     youtube_link = models.URLField(blank=True, null=True)
 
+    # Add a field for exercise rating
+    rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
+
     def __str__(self):
-        return f"{self.title}_{self.soccer_skills.title()}"
+        return f'{self.title}_{self.soccer_skills.title()}'
