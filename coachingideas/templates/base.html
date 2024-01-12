@@ -32,8 +32,11 @@
         <div class="collapse navbar-collapse"
              id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href={% url "exercise_table" %}>Table</a>
                 {% if user.is_authenticated %}
+                    <a class="nav-link" href={% url "exercise_table" %}>Table</a>
+                    <a class="nav-link" href="{% url "create_exercise" %}">
+                        Create Exercise
+                    </a>
                     <a class="nav-link" href="{% url "logout" %}">
                         Logout ({{ user.username }})
                     </a>

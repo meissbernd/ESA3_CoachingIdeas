@@ -1,11 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
-from .forms import CommentForm
+from .forms import CommentForm, ExerciseForm
 from .models import Exercise, Comment
 
 
 # Create your views here.
+@login_required
 def home(request):
     search_exercise = request.GET.get("searchExercise")
     if search_exercise:
@@ -18,6 +20,8 @@ def home(request):
                    "exercises": exercises})
 
 
+
+@login_required
 def exercise_list(request):
     exercises = Exercise.objects.all().order_by("created_on")
     return render(request,
@@ -26,6 +30,7 @@ def exercise_list(request):
                    "exercises": exercises})
 
 
+@login_required
 def detail(request, exercise_id):
     exercise = get_object_or_404(Exercise, pk=exercise_id)
     comments = Comment.objects.filter(exercise=exercise)
@@ -34,6 +39,7 @@ def detail(request, exercise_id):
                    "comments": comments})
 
 
+@login_required
 def create_comment(request, exercise_id):
     exercise = get_object_or_404(Exercise, pk=exercise_id)
     if request.method == 'GET':
@@ -54,6 +60,7 @@ def create_comment(request, exercise_id):
                           {'form': CommentForm(), 'error': 'bad data passed in'})
 
 
+@login_required
 def update_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
     if request.method == 'GET':
@@ -72,10 +79,57 @@ def update_comment(request, comment_id):
                            'error': 'Bad data in form'})
 
 
+@login_required
+def update_exercise(request, exercise_id):
+    exercise = get_object_or_404(Exercise, pk=exercise_id, creator=request.user)
+    if request.method == 'GET':
+        form = ExerciseForm(instance=exercise)
+        return render(request, 'update_exercise.html', {'exercise': exercise, 'form': form})
+    else:
+        try:
+            form = ExerciseForm(request.POST, request.FILES, instance=exercise)
+            if form.is_valid():
+                form.save()
+                return redirect('detail', exercise.id)
+            else:
+                return render(request, 'update_exercise.html',
+                              {'exercise': exercise, 'form': form, 'error': 'Invalid form data'})
+        except ValueError:
+            return render(request, 'update_exercise.html',
+                          {'exercise': exercise, 'form': form, 'error': 'Bad data in form'})
+
+
+@login_required
+def delete_exercise(request, exercise_id):
+    exercise = get_object_or_404(Exercise, pk=exercise_id, creator=request.user)
+
+    if request.method == 'POST':
+        exercise.delete()
+        return redirect('home')  # Redirect to the home page after deletion
+
+    return render(request, 'delete_exercise.html', {'exercise': exercise})
+
+
+@login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
     comment.delete()
     return redirect('detail', comment.exercise.id)
+
+
+@login_required
+def create_exercise(request):
+    if request.method == 'POST':
+        form = ExerciseForm(request.POST, request.FILES)
+        if form.is_valid():
+            exercise = form.save(commit=False)
+            exercise.creator = request.user
+            exercise.save()
+            return redirect('detail', exercise.id)
+    else:
+        form = ExerciseForm()
+
+    return render(request, 'create_exercise.html', {'form': form})
 
 
 def about(request):

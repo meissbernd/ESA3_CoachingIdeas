@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 
+
 def user_signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html',

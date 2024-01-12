@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-    <form action="">
-        <div class="mb-3">
-            <label class="form-label">Search in Exercises:</label>
-            <input type="text" name="searchExercise" class="form-control"/>
-        </div>
-        <button type="submit" class="btn btn-primary">
-            Search
-        </button>
-    </form>
+    <div class="container">
+        <form action="">
+            <div class="mb-3">
+                <label class="form-label">Search in Exercises:</label>
+                <input type="text" name="searchExercise" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">
+                Search
+            </button>
+        </form>
+    </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for exercise in exercises %}
@@ -23,13 +25,13 @@
 
                         {% if exercise.youtube_link %}
                             <a href="{{ exercise.youtube_link }}" class="btn btn-outline-danger">
-                            <i class="bi bi-youtube"></i>
+                                <i class="bi bi-youtube"></i>
                                 Youtube Link
                             </a>
                         {% endif %}
                         {% if exercise.pdf %}
                             <a href="{{ exercise.pdf.url }}" class="btn btn-outline-info">
-                            <i class="bi bi-file-earmark-pd"></i>
+                                <i class="bi bi-file-earmark-pd"></i>
                                 Pdf
                             </a>
                         {% endif %}

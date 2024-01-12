@@ -20,7 +20,7 @@
                         {% endif %}
                         {% if exercise.pdf %}
                             <a href="{{ exercise.pdf.url }}" class="btn btn-outline-info">
-                            <i class="bi bi-file-earmark-pd"></i>
+                                <i class="bi bi-file-earmark-pd"></i>
                                 Pdf
                             </a>
                         {% endif %}
@@ -29,7 +29,20 @@
                                class="btn btn-primary">
                                 Add Comment
                             </a>
+                            <div class="btn-group" role="group">
+                                {% if user == exercise.creator %}
+                                    <a href="{% url 'update_exercise' exercise.id %}" class="btn btn-warning">
+                                        <i class="bi bi-pencil "></i>
+                                        Update
+                                    </a>
+                                    <a href="{% url 'delete_exercise' exercise.id %}" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                        Delete
+                                    </a>
+                                {% endif %}
+                            </div>
                         {% endif %}
+
                     </p>
                     <hr/>
                     <h3>Comments</h3>

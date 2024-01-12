@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Textarea
-from .models import Comment
+from .models import Comment, Exercise
 
 
 class CommentForm(ModelForm):
@@ -15,3 +15,11 @@ class CommentForm(ModelForm):
         widgets = {
             'text': Textarea(attrs={'rows': 4}),
         }
+
+
+class ExerciseForm(ModelForm):
+    class Meta:
+        model = Exercise
+        fields = ['title', 'body', 'soccer_skills', 'for_adults', 'for_jun_a', 'for_jun_b',
+                  'for_jun_c', 'for_jun_d', 'for_jun_e', 'for_jun_f', 'for_jun_g',
+                  'image', 'pdf', 'youtube_link', 'rating']
