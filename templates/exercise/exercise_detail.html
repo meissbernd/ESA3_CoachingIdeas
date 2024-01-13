@@ -1,0 +1,59 @@
+{% extends 'exercise/base.html' %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Titel</th>
+            <th>Vorschau</th>
+            <th>Download</th>
+            <th>Kurzbeschreibung</th>
+            <th>erstellt</th>
+            <th>Autor</th>
+            <th>Trainingsfokus</th>
+            <th>Erw</th>
+            <th>A-Jun</th>
+            <th>B-Jun</th>
+            <th>C-Jun</th>
+            <th>D-Jun</th>
+            <th>E-Jun</th>
+            <th>F-Jun</th>
+            <th>G-Jun</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ exercise.title }}</td>
+            <td>
+                {% if exercise.image %}
+                    <img src="/exercises{{ exercise.image.url }}" style="width:50px;" alt="">
+                {% else %}
+                    <span class="text-muted">No image</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if exercise.pdf %}
+                    <a href="/exercises{{ exercise.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                        Download PDF
+                    </a>
+                {% else %}
+                    <span class="text-muted">No pdf</span>
+                {% endif %}
+            </td>
+            <td>{{ exercise.body }}</td>
+            <td>{{ exercise.created_on }}</td>
+            <td>{{ exercise.creator }}</td>
+            <td>{{ exercise.soccer_skills.title }}</td>
+            <td>{{ exercise.for_adults|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_a|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_b|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_c|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_d|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_e|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_f|yesno:"X,-" }}</td>
+            <td>{{ exercise.for_jun_g|yesno:"X,-" }}</td>
+        </tr>
+    </table>
+    <a class="btn btn-secondary btn-sm" href="{% url 'exercise_list' %}">Zurück</a>
+    <a class="btn btn-danger btn-sm" href="{% url 'exercise_delete' exercise.pk %}">Löschen</a>
+    <a class="btn btn-success btn-sm" href="{% url 'exercise_update' exercise.pk %}">Update</a>
+{% endblock %}

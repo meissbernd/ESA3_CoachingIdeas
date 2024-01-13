@@ -1,0 +1,52 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>460</x><y>260</y><w>140</w><h>110</h></coordinates><panel_attributes>Excercise
+--
+-id: Long
+-description: 
+--
+create
+delete</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>760</x><y>540</y><w>140</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+AgeGroup
+--
+G-Junior
+F-Junior
+E-Junior
+D-Junior
+C-Junior
+B-Junior
+A-Junior
+Adult
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>700</x><y>390</y><w>140</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+SoccerSkill
+--
+Dribbling
+Passing
+Finishing
+Trapping
+Cooperation
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>260</y><w>140</w><h>110</h></coordinates><panel_attributes>Creator
+--
+-id: Long
+-first_name: str
+-last_name: str
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>290</y><w>200</w><h>50</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=0..n
+creates &gt;</panel_attributes><additional_attributes>10;20;180;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>760</x><y>260</y><w>140</w><h>110</h></coordinates><panel_attributes>Comment
+--
+-id: Long
+-description: 
+--
+create
+delete</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>590</x><y>290</y><w>190</w><h>50</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=0..n
+has &gt;</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>360</y><w>180</w><h>100</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=0..n
+addresses &gt;</panel_attributes><additional_attributes>10;10;10;70;160;70</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>360</y><w>310</w><h>230</h></coordinates><panel_attributes>lt=-&gt;
+m1=1
+m2=0..n
+qualified for &gt;</panel_attributes><additional_attributes>10;10;10;200;290;200</additional_attributes></element></diagram>

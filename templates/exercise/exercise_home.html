@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Alle Trainingsübungen</h2>
+<ul>
+    {% for exercise in object_list %}
+    <li><a href="{% url 'exercise_detail' exercise.pk %}">{{ exercise.title }} -> {{ exercise.soccer_skills.title }}</a></li>
+    {% endfor %}
+</ul>
+<a class="btn btn-success btn-sm" href="{% url 'exercise_new' %}">+ Neue Übung hinzufügen</a>
+{% endblock content %}
