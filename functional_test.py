@@ -10,8 +10,8 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.quit()
 
     def test_can_start_app(self):
-        self.browser.get("http://localhost:8000/exercises")
-        self.assertIn("Trainingsübungen", self.browser.title)
+        self.browser.get("http://localhost:8000/")
+        self.assertIn("ESA3 CoachingIdeas", self.browser.title)
         # self.fail("Finish the test!")
 
 
