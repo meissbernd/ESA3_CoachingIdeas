@@ -33,9 +33,9 @@
              id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
-                    <a class="nav-link" href={% url "exercise_table" %}>Table</a>
+                    <a class="nav-link" href={% url "exercise_table" %}>Alle Übungen</a>
                     <a class="nav-link" href="{% url "create_exercise" %}">
-                        Create Exercise
+                        Übung anlegen
                     </a>
                     <a class="nav-link" href="{% url "logout" %}">
                         Logout ({{ user.username }})
