@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "exercise",
-    "accounts"
+    "accounts",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -56,10 +58,8 @@ ROOT_URLCONF = "coachingideas.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [os.path.join(BASE_DIR,
-          'coachingideas/templates')],
-        'APP_DIRS': True,
-
+        "DIRS": [os.path.join(BASE_DIR, "coachingideas/templates")],
+        "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -126,9 +126,14 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'coachingideas/static/',
+    BASE_DIR / "coachingideas/static/",
+]
+
+# django-debug-toolbar setting
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]

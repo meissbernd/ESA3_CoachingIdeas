@@ -10,6 +10,7 @@ selenium==4.16.0  # Testing
 Pillow==10.1.0  # Handle ImageFields
 django-crispy-forms==2.1  # Format forms
 crispy-bootstrap4==2023.1 # Format forms
+django-debug-toolbar==4.2.0 # Debug support in browser
 
 
 
