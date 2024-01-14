@@ -43,12 +43,6 @@ class Exercise(models.Model):
     def __str__(self):
         return f"{self.title}_{self.soccer_skills.title()}"
 
-    def delete(self, *args, **kwargs):
-        """Delete the files in media-folder when exercise is deleted."""
-        self.pdf.delete()
-        self.image.delete()
-        super().delete(*args, **kwargs)
-
 
 class Comment(models.Model):
     text = models.TextField(max_length=100)
