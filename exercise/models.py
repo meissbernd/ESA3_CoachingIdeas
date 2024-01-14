@@ -41,7 +41,13 @@ class Exercise(models.Model):
     rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
 
     def __str__(self):
-        return f'{self.title}_{self.soccer_skills.title()}'
+        return f"{self.title}_{self.soccer_skills.title()}"
+
+    def delete(self, *args, **kwargs):
+        """Delete the files in media-folder when exercise is deleted."""
+        self.pdf.delete()
+        self.image.delete()
+        super().delete(*args, **kwargs)
 
 
 class Comment(models.Model):
