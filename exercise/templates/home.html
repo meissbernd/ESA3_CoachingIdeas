@@ -16,7 +16,11 @@
         {% for exercise in exercises %}
             <div class="col">
                 <div class="card">
-                    <img class="card-img-top" src="{{ exercise.image.url }}"/>
+                    {% if exercise.image %}
+                        <img class="card-img-top" src="{{ exercise.image.url }}" alt="">
+                    {% else %}
+                        <span class="text-muted">No image</span>
+                    {% endif %}
                     <div class="card-body">
                         <a href="{% url 'detail' exercise.id %}">
                             <h5 class="card-title fw-bold">{{ exercise.title }}</h5>
