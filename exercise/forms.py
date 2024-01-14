@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, TextInput, Textarea
 from .models import Comment, Exercise
 
 
@@ -36,3 +36,12 @@ class ExerciseForm(ModelForm):
             "youtube_link",
             "rating",
         ]
+
+    # widgets = {
+    #     "title": TextInput(
+    #         attrs={
+    #             "class": "form-control",
+    #         },
+    #     "body": Textarea(attrs={"rows":})
+    #     )
+    # }

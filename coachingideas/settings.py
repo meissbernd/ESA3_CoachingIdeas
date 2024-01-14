@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     "accounts",
     "debug_toolbar",
     "django_cleanup.apps.CleanupConfig",
+    "crispy_forms",
+    "crispy_bootstrap4",
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
