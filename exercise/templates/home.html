@@ -1,97 +1,55 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="container">
-        <form action="">
-            <div class="mb-3">
-                <label class="form-label">In Übungen suchen:</label>
-                <input type="text" name="searchExercise" class="form-control"/>
-            </div>
-            <button type="submit" class="btn btn-primary mb-3">
-                Suchen
-            </button>
-        </form>
-    </div>
+<div class="container">
+    <form action="">
+        <div class="mb-3">
+            <label class="form-label">In Übungen suchen:</label>
+            <input type="text" name="searchExercise" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">
+            Suchen
+        </button>
+    </form>
+</div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for exercise in exercises %}
-            <div class="col">
-                <div class="card">
-                    {% if exercise.image %}
-                        <img class="card-img-top" src="{{ exercise.image.url }}" alt="">
-                    {% else %}
-                        <span class="text-muted">No image</span>
-                    {% endif %}
-                    <div class="card-body">
-                        <a href="{% url 'detail' exercise.id %}">
-                            <h5 class="card-title fw-bold">{{ exercise.title }}</h5>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for exercise in exercises %}
+        <div class="col">
+            <div class="card h-100" style="max-height: 1200px;">
+                {% if exercise.image %}
+                    <img class="card-img-top" src="{{ exercise.image.url }}" alt="">
+                {% else %}
+                    <span class="text-muted">No image</span>
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <a href="{% url 'detail' exercise.id %}">
+                        <h5 class="card-title fw-bold mb-2">{{ exercise.title }}</h5>
+                    </a>
+                    <p class="card-text flex-grow-1" style="overflow: hidden; text-overflow: ellipsis;">
+                        {{ exercise.body|linebreaksbr|truncatewords_html:84 }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    {% if exercise.youtube_link %}
+                        <a href="{{ exercise.youtube_link }}" class="btn btn-outline-danger">
+                            <i class="bi bi-youtube"></i>
+                            Youtube Link
                         </a>
-                        <p class="card-text">{{ exercise.body }}</p>
-
-                        {% if exercise.youtube_link %}
-                            <a href="{{ exercise.youtube_link }}" class="btn btn-outline-danger">
-                                <i class="bi bi-youtube"></i>
-                                Youtube Link
-                            </a>
-                        {% endif %}
-                        {% if exercise.pdf %}
-                            <a href="{{ exercise.pdf.url }}" class="btn btn-outline-info">
-                                <i class="bi bi-file-earmark-pd"></i>
-                                Pdf
-                            </a>
-                        {% endif %}
-                        <div>
-                            <label for="rating">Rating:</label>
-                            {% if exercise.rating == 0 %}
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                            {% endif %}
-
-                            {% if exercise.rating == 1 %}
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                            {% endif %}
-                            {% if exercise.rating == 2 %}
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                            {% endif %}
-                            {% if exercise.rating == 3 %}
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                            {% endif %}
-                            {% if exercise.rating == 4 %}
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star text-warning"></span>
-                            {% endif %}
-
-                            {% if exercise.rating == 5 %}
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                                <span class="bi bi-star-fill text-warning"></span>
-                            {% endif %}
-
-
-                        </div>
-                    </div>
+                    {% endif %}
+                    {% if exercise.pdf %}
+                        <a href="{{ exercise.pdf.url }}" class="btn btn-outline-info">
+                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                            Pdf
+                        </a>
+                    {% endif %}
+                    {% include 'rating_stars.html' %}
                 </div>
             </div>
-        {% endfor %}
-    </div>
-    </div>
-{% endblock content %}
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
+    {% endblock content %}

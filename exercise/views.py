@@ -7,7 +7,7 @@ from .models import Exercise, Comment
 
 
 # Create your views here.
-@login_required
+
 def home(request):
     search_exercise = request.GET.get("searchExercise")
     if search_exercise:
@@ -22,7 +22,6 @@ def home(request):
     )
 
 
-@login_required
 def exercise_list(request):
     exercises = Exercise.objects.all().order_by("created_on")
     return render(
@@ -32,7 +31,6 @@ def exercise_list(request):
     )
 
 
-@login_required
 def detail(request, exercise_id):
     exercise = get_object_or_404(Exercise, pk=exercise_id)
     comments = Comment.objects.filter(exercise=exercise)
