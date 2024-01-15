@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
@@ -63,8 +64,10 @@ def create_comment(request, exercise_id):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def update_comment(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
+    comment = get_object_or_404(Comment, pk=comment_id)
+    # , user = request.user
     if request.method == "GET":
         form = CommentForm(instance=comment)
         return render(
@@ -84,8 +87,9 @@ def update_comment(request, comment_id):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def update_exercise(request, exercise_id):
-    exercise = get_object_or_404(Exercise, pk=exercise_id, creator=request.user)
+    exercise = get_object_or_404(Exercise, pk=exercise_id)
     if request.method == "GET":
         form = ExerciseForm(instance=exercise)
         return render(
@@ -112,8 +116,9 @@ def update_exercise(request, exercise_id):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def delete_exercise(request, exercise_id):
-    exercise = get_object_or_404(Exercise, pk=exercise_id, creator=request.user)
+    exercise = get_object_or_404(Exercise, pk=exercise_id)
 
     if request.method == "POST":
         exercise.delete()
@@ -123,8 +128,9 @@ def delete_exercise(request, exercise_id):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def delete_comment(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id, user=request.user)
+    comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
     return redirect("detail", comment.exercise.id)
 
