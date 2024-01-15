@@ -40,6 +40,22 @@ class Exercise(models.Model):
 
     rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
 
+    average_rating = models.FloatField(default=0)
+
+    def update_average_rating(self):
+        ratings = [self.rating] + list(self.comment_set.values_list('rating', flat=True))
+        ratings = [r for r in ratings if r is not None]  # Filter out None values
+        average_rating = sum(ratings) / len(ratings) if ratings else 0
+
+        self.average_rating = round(average_rating, 1)
+
+    def save(self, *args, **kwargs):
+        if not self.id:  # Check if the instance is being created
+            self.average_rating = self.rating  # Initialize with the initial rating
+
+        super().save(*args, **kwargs)
+        self.update_average_rating()
+
     def __str__(self):
         return f"{self.title}_{self.soccer_skills.title()}"
 
@@ -50,6 +66,11 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.exercise.update_average_rating()
+        self.exercise.save()
 
     def __str__(self):
         return self.text

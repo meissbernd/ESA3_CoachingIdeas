@@ -1,6 +1,7 @@
 <div>
     <label for="rating">Rating:</label>
-    {% if exercise.rating == 0 %}
+
+    {% if exercise.average_rating < 0.5 %}
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
@@ -8,28 +9,33 @@
     <span class="bi bi-star text-warning"></span>
     {% endif %}
 
-    {% if exercise.rating == 1 %}
+    {% if exercise.average_rating < 1.5 and exercise.average_rating >= 0.5 %}
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     {% endif %}
-    {% if exercise.rating == 2 %}
+
+    {% if exercise.average_rating < 2.5 and exercise.average_rating >= 1.5 %}
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     {% endif %}
-    {% if exercise.rating == 3 %}
+
+
+    {% if exercise.average_rating < 3.5 and exercise.average_rating >= 2.5 %}
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     <span class="bi bi-star text-warning"></span>
     {% endif %}
-    {% if exercise.rating == 4 %}
+
+
+    {% if exercise.average_rating < 4.5 and exercise.average_rating >= 3.5 %}
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star-fill text-warning"></span>
@@ -37,7 +43,8 @@
     <span class="bi bi-star text-warning"></span>
     {% endif %}
 
-    {% if exercise.rating == 5 %}
+
+    {% if exercise.average_rating >= 4.5 %}
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star-fill text-warning"></span>
     <span class="bi bi-star-fill text-warning"></span>
@@ -45,5 +52,5 @@
     <span class="bi bi-star-fill text-warning"></span>
     {% endif %}
 
-
+    {{ exercise.average_rating }}
 </div>
