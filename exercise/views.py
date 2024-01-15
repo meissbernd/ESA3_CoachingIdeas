@@ -2,19 +2,37 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+from django.db import models
 
 from .forms import CommentForm, ExerciseForm
 from .models import Exercise, Comment
 
 
-# Create your views here.
-
 def home(request):
     search_exercise = request.GET.get("searchExercise")
+
     if search_exercise:
-        exercises = Exercise.objects.filter(title__icontains=search_exercise)
+        search_exercise = Exercise.objects.filter(
+            Q(title__icontains=search_exercise) |
+            Q(body__icontains=search_exercise) |
+            Q(soccer_skills__icontains=search_exercise)  # Correct field name
+        ).order_by('-average_rating')
     else:
-        exercises = Exercise.objects.all()
+        search_exercise = Exercise.objects.all().order_by('-average_rating')
+
+    paginator = Paginator(search_exercise, 6)
+
+    page = request.GET.get('page')
+    try:
+        exercises = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        exercises = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        exercises = paginator.page(paginator.num_pages)
 
     return render(
         request,

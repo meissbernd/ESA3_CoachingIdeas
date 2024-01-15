@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, CharField
 from .models import Comment, Exercise
 
 
@@ -37,11 +37,20 @@ class ExerciseForm(ModelForm):
             "rating",
         ]
 
-    # widgets = {
-    #     "title": TextInput(
-    #         attrs={
-    #             "class": "form-control",
-    #         },
-    #     "body": Textarea(attrs={"rows":})
-    #     )
-    # }
+
+# class ExerciseSearchForm(ModelForm):
+#     search_exercise = CharField(required=False, label='Search Exercise')
+#
+#     class Meta:
+#         model = Exercise
+#         fields = [
+#             "soccer_skills",
+#             "for_adults",
+#             "for_jun_a",
+#             "for_jun_b",
+#             "for_jun_c",
+#             "for_jun_d",
+#             "for_jun_e",
+#             "for_jun_f",
+#             "for_jun_g",
+#         ]
