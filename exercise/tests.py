@@ -1,19 +1,18 @@
 import http
 
-# from django.contrib.auth.models import User
-from django.test import TestCase, Client
+from django.contrib.auth.models import User
+from django.test import TestCase
 from django.urls import reverse
-
-# Get user model from settings
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
 
 
 class TestLandingPage(TestCase):
+    """Tests for landing page."""
+
     def test_home_when_user_is_not_logged_in(self):
-        client = Client()
-        response = client.get(reverse("home"))
+        """Test if user can see home page elements."""
+        # Testing
+        response = self.client.get(reverse("home"))
+        # Assertions
         self.assertEqual(http.HTTPStatus.OK, response.status_code)
         self.assertTemplateUsed(response, "home.html")
         self.assertContains(response, "<title>ESA3 CoachingIdeas</title>")
@@ -43,7 +42,7 @@ class TestCreateExercisePage(TestCase):
     def test_when_logged_in(self):
         """Test logged-in user can see page."""
         # Login test user
-        login = self.client.login(username="testuser", password="testuser")
+        self.client.login(username="testuser", password="testuser")
         # Testing
         response = self.client.get(reverse("create_exercise"))
         # Assertions
