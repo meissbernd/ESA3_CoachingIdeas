@@ -49,3 +49,4 @@ class TestCreateExercisePage(TestCase):
         # Assertions
         self.assertEqual(str(response.context["user"]), "testuser")
         self.assertEqual(http.HTTPStatus.OK, response.status_code)
+        self.assertTemplateUsed(response, "create_exercise.html")
