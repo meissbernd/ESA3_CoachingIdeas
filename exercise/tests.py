@@ -1,8 +1,13 @@
 import http
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.urls import reverse
+
+# Get user model from settings
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class TestLandingPage(TestCase):
@@ -17,17 +22,30 @@ class TestLandingPage(TestCase):
 
 
 class TestCreateExercisePage(TestCase):
-    # Todo: Test fails -  login doesn't work yet
-    def test_when_user_is_logged_in(self):
-        # Create test user and login
-        client = Client()
-        user = User.objects.create_user(username="test", password="test")
-        client.login(username="test", password="test")
+    """Tests for creating an exercise page."""
 
+    def setUp(self):
+        # Create test user
+        self.test_user = User.objects.create_user(
+            username="testuser", password="testuser"
+        )
+        self.test_user.save()
+
+    def test_redirect_when_not_logged_in(self):
+        """Test user is redirected to login page."""
         # Testing
         response = self.client.get(reverse("create_exercise"))
-        self.assertEqual(http.HTTPStatus.OK, response.status_code)
+        # Assertion
+        self.assertRedirects(
+            response, "/accounts/login/?next=/exercise/create_exercise/"
+        )
 
-        # Logout and delete test user
-        client.logout()
-        user.delete()
+    def test_when_logged_in(self):
+        """Test logged-in user can see page."""
+        # Login test user
+        login = self.client.login(username="testuser", password="testuser")
+        # Testing
+        response = self.client.get(reverse("create_exercise"))
+        # Assertions
+        self.assertEqual(str(response.context["user"]), "testuser")
+        self.assertEqual(http.HTTPStatus.OK, response.status_code)
