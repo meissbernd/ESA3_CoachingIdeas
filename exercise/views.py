@@ -1,13 +1,11 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
-from django.db import models
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm, ExerciseForm
-from .models import Exercise, Comment
+from .models import Comment, Exercise
 
 
 def home(request):
@@ -15,16 +13,16 @@ def home(request):
 
     if search_exercise:
         search_exercise = Exercise.objects.filter(
-            Q(title__icontains=search_exercise) |
-            Q(body__icontains=search_exercise) |
-            Q(soccer_skills__icontains=search_exercise)  # Correct field name
-        ).order_by('-average_rating')
+            Q(title__icontains=search_exercise)
+            | Q(body__icontains=search_exercise)
+            | Q(soccer_skills__icontains=search_exercise)  # Correct field name
+        ).order_by("-average_rating")
     else:
-        search_exercise = Exercise.objects.all().order_by('-average_rating')
+        search_exercise = Exercise.objects.all().order_by("-average_rating")
 
     paginator = Paginator(search_exercise, 6)
 
-    page = request.GET.get('page')
+    page = request.GET.get("page")
     try:
         exercises = paginator.page(page)
     except PageNotAnInteger:
@@ -107,11 +105,12 @@ def update_comment(request, comment_id):
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def update_exercise(request, exercise_id):
+    update_exercise_html = "update_exercise.html"
     exercise = get_object_or_404(Exercise, pk=exercise_id)
     if request.method == "GET":
         form = ExerciseForm(instance=exercise)
         return render(
-            request, "update_exercise.html", {"exercise": exercise, "form": form}
+            request, update_exercise_html, {"exercise": exercise, "form": form}
         )
     else:
         try:
@@ -122,13 +121,13 @@ def update_exercise(request, exercise_id):
             else:
                 return render(
                     request,
-                    "update_exercise.html",
+                    update_exercise_html,
                     {"exercise": exercise, "form": form, "error": "Invalid form data"},
                 )
         except ValueError:
             return render(
                 request,
-                "update_exercise.html",
+                update_exercise_html,
                 {"exercise": exercise, "form": form, "error": "Bad data in form"},
             )
 
@@ -168,5 +167,5 @@ def create_exercise(request):
     return render(request, "create_exercise.html", {"form": form})
 
 
-def about(request):
+def about():
     return HttpResponse("<h1>About")

@@ -1,4 +1,5 @@
 import http
+import unittest
 
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -49,3 +50,7 @@ class TestCreateExercisePage(TestCase):
         self.assertEqual(str(response.context["user"]), "testuser")
         self.assertEqual(http.HTTPStatus.OK, response.status_code)
         self.assertTemplateUsed(response, "create_exercise.html")
+
+
+if __name__ == "__main__":
+    unittest.main()
