@@ -1,6 +1,6 @@
 from django.urls import path
+
 from . import views
-from .views import create_exercise
 
 urlpatterns = [
     path('<int:exercise_id>', views.detail, name='detail'),
