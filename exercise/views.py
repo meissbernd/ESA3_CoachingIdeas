@@ -9,8 +9,8 @@ from .models import Comment, Exercise
 
 
 def home(request):
+    """Create view for landing page."""
     search_exercise = request.GET.get("searchExercise")
-
     if search_exercise:
         search_exercise = Exercise.objects.filter(
             Q(title__icontains=search_exercise)
@@ -19,9 +19,7 @@ def home(request):
         ).order_by("-average_rating")
     else:
         search_exercise = Exercise.objects.all().order_by("-average_rating")
-
     paginator = Paginator(search_exercise, 6)
-
     page = request.GET.get("page")
     try:
         exercises = paginator.page(page)
@@ -31,7 +29,6 @@ def home(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         exercises = paginator.page(paginator.num_pages)
-
     return render(
         request,
         "home.html",
@@ -40,6 +37,7 @@ def home(request):
 
 
 def exercise_list(request):
+    """Create view for exercise list."""
     exercises = Exercise.objects.all().order_by("created_on")
     return render(
         request,
@@ -49,6 +47,7 @@ def exercise_list(request):
 
 
 def detail(request, exercise_id):
+    """Create view for single exercise."""
     exercise = get_object_or_404(Exercise, pk=exercise_id)
     comments = Comment.objects.filter(exercise=exercise)
     return render(request, "detail.html", {"exercise": exercise, "comments": comments})
@@ -56,6 +55,7 @@ def detail(request, exercise_id):
 
 @login_required
 def create_comment(request, exercise_id):
+    """Create view for comment."""
     exercise = get_object_or_404(Exercise, pk=exercise_id)
     if request.method == "GET":
         return render(
@@ -82,6 +82,7 @@ def create_comment(request, exercise_id):
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def update_comment(request, comment_id):
+    """View to update a comment."""
     comment = get_object_or_404(Comment, pk=comment_id)
     # , user = request.user
     if request.method == "GET":
@@ -105,6 +106,7 @@ def update_comment(request, comment_id):
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def update_exercise(request, exercise_id):
+    """View to update exercise details."""
     update_exercise_html = "update_exercise.html"
     exercise = get_object_or_404(Exercise, pk=exercise_id)
     if request.method == "GET":
@@ -135,6 +137,7 @@ def update_exercise(request, exercise_id):
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def delete_exercise(request, exercise_id):
+    """View to delete an exercise."""
     exercise = get_object_or_404(Exercise, pk=exercise_id)
 
     if request.method == "POST":
@@ -147,6 +150,7 @@ def delete_exercise(request, exercise_id):
 @login_required
 @user_passes_test(lambda u: u.is_staff or u.is_authenticated)
 def delete_comment(request, comment_id):
+    """View to delete comment."""
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
     return redirect("detail", comment.exercise.id)
@@ -154,6 +158,7 @@ def delete_comment(request, comment_id):
 
 @login_required
 def create_exercise(request):
+    """View to create exercise and define details."""
     if request.method == "POST":
         form = ExerciseForm(request.POST, request.FILES)
         if form.is_valid():
