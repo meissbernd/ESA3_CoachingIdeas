@@ -21,7 +21,7 @@ class Exercise(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     soccer_skills = models.CharField(
-        max_length=50, choices=SoccerSkillTextChoices.choices, null=True
+        max_length=50, choices=SoccerSkillTextChoices.choices, blank=True
     )
     for_adults = models.BooleanField(default=True)
     for_jun_a = models.BooleanField(default=False)
@@ -43,7 +43,9 @@ class Exercise(models.Model):
     average_rating = models.FloatField(default=0)
 
     def update_average_rating(self):
-        ratings = [self.rating] + list(self.comment_set.values_list('rating', flat=True))
+        ratings = [self.rating] + list(
+            self.comment_set.values_list("rating", flat=True)
+        )
         ratings = [r for r in ratings if r is not None]  # Filter out None values
         average_rating = sum(ratings) / len(ratings) if ratings else 0
 
