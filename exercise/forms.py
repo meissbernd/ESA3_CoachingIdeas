@@ -37,3 +37,20 @@ class ExerciseForm(ModelForm):
             "youtube_link",
             "rating",
         ]
+        labels = {
+            "title": "Titel",
+            "body": "Kurzbeschreibung",
+            "soccer_skills": "Trainingsfokus",
+            "for_adults": "Erwachsene",
+            "for_jun_a": "A-Jun",
+            "for_jun_b": "B-Jun",
+            "for_jun_c": "C-Jun",
+            "for_jun_d": "D-Jun",
+            "for_jun_e": "E-Jun",
+            "for_jun_f": "F-Jun",
+            "for_jun_g": "G-Jun",
+            "image": "Bild",
+            "pdf": "pdf-Datei",
+            "youtube_link": "Link zu Video",
+            "rating": "Bewertung",
+        }
