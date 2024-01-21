@@ -22,9 +22,10 @@
         </thead>
         {% for exercise in exercises %}
             <tr>
-                {#                <td>{{ exercise.title }}</td>#}
-{#                <td><a href="{% url 'exercise_detail' exercise.pk %}">{{ exercise.title }}</a></td>#}
-                <td>{{ exercise.title }}</td>
+                <td><a href="{% url 'detail' exercise.id %}">
+                    <h5 class="mb-2">{{ exercise.title }}</h5>
+                </a>
+                </td>
                 <td>{{ exercise.body }}</td>
                 <td>{{ exercise.created_on }}</td>
                 <td>{{ exercise.creator }}</td>
@@ -40,7 +41,7 @@
                 <td>
                     {% if exercise.pdf %}
                         <a href="/exercises{{ exercise.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
-                            Download PDF
+                            PDF
                         </a>
                     {% else %}
                         <span class="text-muted">No pdf</span>
