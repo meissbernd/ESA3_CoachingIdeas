@@ -16,7 +16,18 @@
                 <span class="text-muted">
                     von {{ exercise.creator.username }}
                 </span>
-                <p class="card-text">{{ exercise.body }}</p>
+                <p class="card-text"><b>Kurzbeschreibung:</b> {{ exercise.body }}</p>
+                <p class="card-text"><b>Trainingsfokus:</b> {{ exercise.soccer_skills }}</p>
+                <p class="card-text"><b>Altersklasse:</b>
+                    {% if exercise.for_adults %} Erwachsene {% endif %}
+                    {% if exercise.for_jun_a %} A-Jun {% endif %}
+                    {% if exercise.for_jun_b %} B-Jun {% endif %}
+                    {% if exercise.for_jun_c %} C-Jun {% endif %}
+                    {% if exercise.for_jun_d %} D-Jun {% endif %}
+                    {% if exercise.for_jun_e %} E-Jun {% endif %}
+                    {% if exercise.for_jun_f %} F-Jun {% endif %}
+                    {% if exercise.for_jun_g %} G-Jun {% endif %}
+                </p>
                 <p class="card-text">
                     {% if exercise.youtube_link %}
                     <a href="{{ exercise.youtube_link }}"
