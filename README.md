@@ -48,6 +48,19 @@ $ pip install -r requirements.txt
 DJANGO_SETTINGS_MODULE in den Environment variables setzen!
 <img src="documentation/Screenshot_RunConfigurationSettings_DjangoSettingsModule.png" alt="" height="400"/>
 
+### Testing
+
+Es existieren zwei Testdateien, um die Testbarkeit zu demonstrieren.
+- ./functional_test.py (einfacher End-To-End Test mit Selenium)
+- ./exercise/test.py (einfache Unit Tests)
+
+Es kann sein, dass für eine fehlerfreie Ausführung der Tests mit PyCharm zunächst
+
+das Projekt geschlossen, 
+
+dann der ./idea-folder gelöscht 
+
+und dann das Projekt neu in PyCharm geöffnet werden muss.
 
 ## Notes for Development only!
 ### Database
