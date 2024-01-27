@@ -2,12 +2,12 @@
 {% block content %}
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Delete Exercise</h5>
-        <p class="card-text">Are you sure you want to delete the exercise "{{ exercise.title }}"?</p>
+        <h5 class="card-title">Übung löschen</h5>
+        <p class="card-text">Möchtest Du die Übung "{{ exercise.title }}" wirklich löschen?</p>
         <form method="post">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete</button>
-            <a href="{% url 'detail' exercise.id %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-danger">Löschen</button>
+            <a href="{% url 'detail' exercise.id %}" class="btn btn-secondary">Abbruch</a>
         </form>
     </div>
 </div>

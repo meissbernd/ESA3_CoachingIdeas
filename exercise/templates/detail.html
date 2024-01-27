@@ -12,10 +12,14 @@
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">{{ exercise.title }}</h5>
-                <span class="text-muted">
+                <div class="card-text">
+
+                    <h5 class="card-title">{{ exercise.title }}</h5>
+                    <span class="text-muted">
                     von {{ exercise.creator.username }}
                 </span>
+                </div>
+                <hr/>
                 <p class="card-text"><b>Kurzbeschreibung:</b> {{ exercise.body }}</p>
                 <p class="card-text"><b>Trainingsfokus:</b> {{ exercise.soccer_skills }}</p>
                 <p class="card-text"><b>Altersklasse:</b>
@@ -45,30 +49,30 @@
                     {% if user.is_authenticated %}
                     <a href="{% url 'create_comment' exercise.id %}"
                        class="btn btn-primary">
-                        Add Comment
+                        Kommentar hinzufügen
                     </a>
                     {% endif %}
                 <div class="btn-group" role="group">
                     {% if user.is_authenticated and user == exercise.creator or user.is_staff %}
                     <a href="{% url 'update_exercise' exercise.id %}" class="btn btn-warning">
                         <i class="bi bi-pencil "></i>
-                        Update
+                        Ändern
                     </a>
                     <a href="{% url 'delete_exercise' exercise.id %}" class="btn btn-danger">
                         <i class="bi bi-trash"></i>
-                        Delete
+                        Löschen
                     </a>
                     {% endif %}
                 </div>
 
 
                 <hr/>
-                <h3>Comments</h3>
+                <h3>Kommentare:</h3>
                 <ul class="list-group">
                     {% for comment in comments %}
                     <li class="list-group-item pb-3 pt-3">
                         <h5 class="card-title">
-                            commented by {{ comment.user.username }}
+                            von {{ comment.user.username }}
                         </h5>
                         <h6 class="card-subtitle mb-2 text-muted">
                             {{ comment.date }}
@@ -77,11 +81,11 @@
                         {% if user.is_authenticated and user == comment.user or user.is_staff %}
                         <a class="btn btn-primary me-2"
                            href="{% url 'update_comment' comment.id %}">
-                            Update
+                            Ändern
                         </a>
                         <a class=" btn btn-danger"
                            href="{% url 'delete_comment' comment.id %}">
-                            Delete
+                            Löschen
                         </a>
                         {% endif %}
                     </li>
