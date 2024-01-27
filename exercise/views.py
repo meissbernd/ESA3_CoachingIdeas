@@ -15,7 +15,7 @@ def home(request):
         search_exercise = Exercise.objects.filter(
             Q(title__icontains=search_exercise)
             | Q(body__icontains=search_exercise)
-            | Q(soccer_skills__icontains=search_exercise)  # Correct field name
+            | Q(soccer_skills__icontains=search_exercise)
         ).order_by("-average_rating")
     else:
         search_exercise = Exercise.objects.all().order_by("-average_rating")
@@ -173,4 +173,4 @@ def create_exercise(request):
 
 
 def about():
-    return HttpResponse("<h1>About")
+    return HttpResponse("<h1>About</h1>")

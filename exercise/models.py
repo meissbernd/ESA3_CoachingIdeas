@@ -43,6 +43,8 @@ class Exercise(models.Model):
     average_rating = models.FloatField(default=0)
 
     def update_average_rating(self):
+        """Updates the average rating  for the exercise based on the ratings of the comments."""
+
         ratings = [self.rating] + list(
             self.comment_set.values_list("rating", flat=True)
         )
@@ -52,6 +54,8 @@ class Exercise(models.Model):
         self.average_rating = round(average_rating, 1)
 
     def save(self, *args, **kwargs):
+        """Overrides the default save method to set average_rating."""
+
         if not self.id:  # Check if the instance is being created
             self.average_rating = self.rating  # Initialize with the initial rating
 
@@ -63,6 +67,8 @@ class Exercise(models.Model):
 
 
 class Comment(models.Model):
+    """Represents a comment on an exercise made by a user"""
+
     text = models.TextField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -70,6 +76,7 @@ class Comment(models.Model):
     rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
 
     def save(self, *args, **kwargs):
+        """Overrides the default save method to update the average rating of exercise"""
         super().save(*args, **kwargs)
         self.exercise.update_average_rating()
         self.exercise.save()

@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def user_signup(request):
+    """Handles user sign-up logic."""
     if request.method == 'GET':
         return render(request, 'signup.html',
                       {'form': UserCreateForm})
@@ -23,19 +24,21 @@ def user_signup(request):
             except IntegrityError:
                 return render(request, 'signup.html',
                               {'form': UserCreateForm,
-                               'error': 'Username already taken. Choose new username.'})
+                               'error': 'Benutzername bereits vergeben. Bitte einen neuen Benutzernamen wählen.'})
         else:
             return render(request, 'signup.html',
-                          {'form': UserCreateForm, 'error': 'Passwords do not match'})
+                          {'form': UserCreateForm, 'error': 'Passwörter stimmen nicht überein'})
 
 
 @login_required
 def user_logout(request):
+    """Logs out the authenticated user."""
     logout(request)
     return redirect('home')
 
 
 def user_login(request):
+    """Handles user login logic."""
     if request.method == 'GET':
         return render(request, 'login.html',
                       {'form': AuthenticationForm})
@@ -45,7 +48,7 @@ def user_login(request):
         if user is None:
             return render(request, 'login.html',
                           {'form': AuthenticationForm(),
-                           'error': 'username and password do not match'})
+                           'error': 'Username und Passwort stimmen nicht überein'})
         else:
             login(request, user)
             return redirect('home')
