@@ -4,6 +4,8 @@ from .models import Comment, Exercise
 
 
 class CommentForm(ModelForm):
+    """Form to ask for details of a comment."""
+
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields["text"].widget.attrs.update({"class": "form-control"})
@@ -18,6 +20,8 @@ class CommentForm(ModelForm):
 
 
 class ExerciseForm(ModelForm):
+    """Form to ask for details of a physical exercise for training."""
+
     class Meta:
         model = Exercise
         fields = [

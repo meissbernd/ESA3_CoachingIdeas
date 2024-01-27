@@ -31,30 +31,25 @@ class Exercise(models.Model):
     for_jun_e = models.BooleanField(default=False)
     for_jun_f = models.BooleanField(default=False)
     for_jun_g = models.BooleanField(default=False)
-
     image = models.ImageField(upload_to="exercise/images/", null=True, blank=True)
-
     pdf = models.FileField(upload_to="exercise/pdfs/", blank=True)
-
     youtube_link = models.URLField(blank=True, null=True)
-
     rating = models.IntegerField(default=0, choices=[(i, i) for i in range(0, 6)])
-
     average_rating = models.FloatField(default=0)
 
     def update_average_rating(self):
+        """Calculate average exercise rating value."""
         ratings = [self.rating] + list(
             self.comment_set.values_list("rating", flat=True)
         )
         ratings = [r for r in ratings if r is not None]  # Filter out None values
         average_rating = sum(ratings) / len(ratings) if ratings else 0
-
         self.average_rating = round(average_rating, 1)
 
     def save(self, *args, **kwargs):
+        """Actions when saving an exercise."""
         if not self.id:  # Check if the instance is being created
             self.average_rating = self.rating  # Initialize with the initial rating
-
         super().save(*args, **kwargs)
         self.update_average_rating()
 
@@ -63,6 +58,8 @@ class Exercise(models.Model):
 
 
 class Comment(models.Model):
+    """Comment to an exercise."""
+
     text = models.TextField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
