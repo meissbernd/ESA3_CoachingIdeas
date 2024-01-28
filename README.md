@@ -48,6 +48,21 @@ $ pip install -r requirements.txt
 DJANGO_SETTINGS_MODULE in den Environment variables setzen!
 <img src="documentation/Screenshot_RunConfigurationSettings_DjangoSettingsModule.png" alt="" height="400"/>
 
+
+### Accounts zum manuellen Testen
+**"normaler Trainer":**
+
+UID: TestTrainer
+
+PW: TestTrainer
+
+**"Cheftrainer" (wie Admin):**
+
+UID: ChefTrainer
+
+PW: ChefTrainer
+
+
 ### Testing
 
 Es existieren zwei Testdateien, um die Testbarkeit zu demonstrieren.
