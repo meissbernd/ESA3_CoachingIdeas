@@ -41,7 +41,7 @@
                 <td>{{ exercise.for_jun_g|yesno:"X,-" }}</td>
                 <td>
                     {% if exercise.pdf %}
-                        <a href="/exercises{{ exercise.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                        <a href="{{ exercise.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
                             PDF
                         </a>
                     {% else %}
