@@ -26,7 +26,8 @@
                     <h5 class="mb-2">{{ exercise.title }}</h5>
                 </a>
                 </td>
-                <td>{{ exercise.body }}</td>
+<!--                Wortzahl in der Beschreibung begrenzen mit truncatewords_html-->
+                <td>{{ exercise.body|linebreaksbr|truncatewords_html:24 }}</td>
                 <td>{{ exercise.created_on }}</td>
                 <td>{{ exercise.creator }}</td>
                 <td>{{ exercise.soccer_skills.title }}</td>
